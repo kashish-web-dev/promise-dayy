@@ -1,0 +1,185 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My 10 Promises 💍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+  overflow-x:hidden;
+  color:white;
+  text-align:center;
+}
+
+/* Snow */
+.snowflake{
+  position:absolute;
+  top:-10px;
+  font-size:12px;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{ transform:translateY(100vh); }
+}
+
+/* Hearts */
+.heart{
+  position:absolute;
+  color:#ff4d88;
+  animation:floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) scale(0.5);}
+  100%{transform:translateY(-10vh) scale(1.2);}
+}
+
+.container{
+  padding:50px 20px;
+}
+
+h1{
+  font-size:3rem;
+  margin-bottom:20px;
+  background:linear-gradient(to right,#ff9a9e,#fad0c4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+#typing{
+  font-size:1.2rem;
+  margin-bottom:30px;
+  min-height:40px;
+}
+
+button{
+  padding:12px 25px;
+  font-size:1rem;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(to right,#ff758c,#ff7eb3);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px pink;
+}
+
+/* Cards Grid */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:40px 20px;
+}
+
+/* Card Style */
+.card{
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(12px);
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 20px rgba(255,192,203,0.3);
+  transform:scale(0);
+  opacity:0;
+  transition:0.6s ease;
+}
+
+.card.show{
+  transform:scale(1);
+  opacity:1;
+}
+
+.card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px hotpink;
+}
+
+.card h3{
+  margin-bottom:10px;
+  color:#ff99cc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Happy Promise Day 💍</h1>
+  <div id="typing"></div>
+  <button onclick="showPromises()">Open My Promise 💖</button>
+
+  <div class="cards">
+    <div class="card"><h3>Promise 1 💞</h3><p>I promise to always choose you.</p></div>
+    <div class="card"><h3>Promise 2 🌸</h3><p>I promise to support your dreams.</p></div>
+    <div class="card"><h3>Promise 3 💫</h3><p>I promise to stay beside you forever.</p></div>
+    <div class="card"><h3>Promise 4 💖</h3><p>I promise to make you smile daily.</p></div>
+    <div class="card"><h3>Promise 5 🌙</h3><p>I promise to be your peace.</p></div>
+    <div class="card"><h3>Promise 6 🌈</h3><p>I promise to respect and trust you.</p></div>
+    <div class="card"><h3>Promise 7 💕</h3><p>I promise to grow with you.</p></div>
+    <div class="card"><h3>Promise 8 ✨</h3><p>I promise to protect your heart.</p></div>
+    <div class="card"><h3>Promise 9 💌</h3><p>I promise to never give up on us.</p></div>
+    <div class="card"><h3>Promise 10 💍</h3><p>I promise my forever belongs to you.</p></div>
+  </div>
+</div>
+
+<script>
+
+/* Typing Effect */
+const text="You are my today, tomorrow and forever... ❤️";
+let i=0;
+function typing(){
+  if(i<text.length){
+    document.getElementById("typing").innerHTML+=text.charAt(i);
+    i++;
+    setTimeout(typing,50);
+  }
+}
+typing();
+
+/* Snow */
+for(let i=0;i<40;i++){
+  let snow=document.createElement("div");
+  snow.className="snowflake";
+  snow.innerHTML="❄";
+  snow.style.left=Math.random()*100+"vw";
+  snow.style.animationDuration=(Math.random()*3+2)+"s";
+  snow.style.opacity=Math.random();
+  document.body.appendChild(snow);
+}
+
+/* Hearts */
+setInterval(()=>{
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤";
+  heart.style.left=Math.random()*100+"vw";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},700);
+
+/* Pop-up animation one by one */
+function showPromises(){
+  const cards=document.querySelectorAll(".card");
+  cards.forEach((card,index)=>{
+    setTimeout(()=>{
+      card.classList.add("show");
+    },index*300); // delay between each card
+  });
+}
+
+</script>
+
+</body>
+</html>
